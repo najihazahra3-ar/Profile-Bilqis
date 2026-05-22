@@ -1,49 +1,81 @@
-# Aplikasi Laravel Sederhana
+# Portfolio Laravel 13 Aesthetic
 
-## Identitas Mahasiswa
-- **Nama:** Bilqis Najiha Zahra
-- **NRP:** 5124500024
-- **Kelas:** MMB A
+Website portfolio mahasiswa multimedia dengan halaman publik pastel aesthetic, karakter 3D Three.js, login admin, dashboard, CRUD portfolio, pengalaman acara, skill, kontak, upload gambar, pagination, validasi form, dan SweetAlert.
 
-## Deskripsi
-Project ini adalah aplikasi Laravel sederhana untuk tugas perkuliahan. Aplikasi memiliki halaman utama yang dapat diakses melalui route `/` dan menampilkan view `home.blade.php` dengan teks "Welcome to My App".
+## Struktur Penting
 
-## Fitur
-- Route utama `/` pada `routes/web.php`.
-- Halaman utama menggunakan `resources/views/home.blade.php`.
-- Styling halaman utama menggunakan `public/css/home.css`.
-- Struktur database menggunakan migration bawaan Laravel.
-- Build frontend menggunakan Vite dan Tailwind CSS.
+- `routes/web.php` berisi route publik, auth, dan admin.
+- `app/Http/Controllers` berisi controller publik, login, dan CRUD admin.
+- `app/Models` berisi model `Portfolio`, `Experience`, `Skill`, `Contact`, dan `User`.
+- `database/migrations` berisi tabel `users`, `portfolios`, `experiences`, `skills`, dan `contacts`.
+- `database/seeders/DatabaseSeeder.php` berisi akun admin dan data contoh.
+- `resources/views/home.blade.php` adalah halaman portfolio publik.
+- `resources/views/admin` berisi dashboard dan semua halaman CRUD.
+- `public/css/home.css`, `public/css/admin.css`, `public/js/home.js`, dan `public/js/admin.js` berisi styling dan animasi.
 
-## Struktur Folder Penting
-- `app/` berisi kode utama aplikasi Laravel.
-- `routes/web.php` berisi definisi route web.
-- `resources/views/` berisi file tampilan Blade.
-- `public/css/` berisi file CSS publik.
-- `database/migrations/` berisi file migration database.
-- `.env.example` berisi contoh konfigurasi environment.
+## Cara Install di VS Code
 
-## Cara Menjalankan
+1. Buka folder project di VS Code.
+2. Install dependency PHP:
+
 ```bash
 composer install
-cp .env.example .env
+```
+
+3. Salin file environment:
+
+```bash
+copy .env.example .env
+```
+
+4. Buat application key:
+
+```bash
 php artisan key:generate
-php artisan migrate
-npm install
-npm run build
+```
+
+5. Atur database MySQL di `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=portfolio_laravel
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+6. Buat database `portfolio_laravel` di MySQL atau phpMyAdmin.
+7. Jalankan migration dan seeder:
+
+```bash
+php artisan migrate --seed
+```
+
+8. Buat link storage agar upload gambar bisa tampil:
+
+```bash
+php artisan storage:link
+```
+
+9. Jalankan server Laravel:
+
+```bash
 php artisan serve
 ```
 
-Setelah server berjalan, buka aplikasi melalui:
+10. Buka website:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-## Teknologi
-- Laravel
-- PHP
-- Blade
-- Vite
-- Tailwind CSS
-- SQLite
+## Login Admin
+
+```text
+URL: http://127.0.0.1:8000/login
+Email: admin@portfolio.test
+Password: password
+```
+
+Setelah login, admin bisa mengelola portfolio, pengalaman acara, skill, kontak, dan melihat statistik sederhana di dashboard.
